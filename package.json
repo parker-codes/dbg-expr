@@ -1,0 +1,29 @@
+{
+  "name": "dbg-expr",
+  "version": "0.0.1",
+  "description": "A helper for evalutating and logging an expression at the same time.",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "dev": "microbundle watch",
+    "build": "microbundle"
+  },
+  "keywords": [
+    "debug",
+    "console",
+    "logging"
+  ],
+  "author": "Parker McMullin <parker.mcmullin01@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/google-mac/debug.git"
+  },
+  "homepage": "https://github.com/google-mac/debug",
+  "dependencies": {},
+  "devDependencies": {
+    "microbundle": "^0.11.0"
+  }
+}
