@@ -1,9 +1,9 @@
 // TODO: add tests for helper functions
-// TODO: create function for generating output
 // TODO: make sure that functions can still log out expression -> dbg(() => someFunction());
 
-import { Expression, NullableString, LogParts } from './types';
+import { Expression, LogParts } from './types';
 import parse from './parser';
+import { getCallerLocation, getStackTrace } from './tracer';
 
 function dbg(expression: Expression): any {
   const logParts = evaluateDbg(expression);
@@ -24,34 +24,6 @@ function evaluateDbg(expression: Expression): LogParts {
     location: getCallerLocation(getStackTrace()),
     value: expression,
   };
-}
-
-function getStackTrace(): string[] {
-  let trace: string = '';
-
-  try {
-    throw new Error('');
-  } catch (error) {
-    trace = error.stack || '';
-  }
-
-  const stack = trace.split('\n').map(line => line.trim());
-  return stack.splice(stack[0] == 'Error' ? 2 : 1);
-}
-
-function getCallerLocation(stackTrace: string[]): NullableString {
-  const LOCATION = 1;
-
-  if (stackTrace.length < LOCATION + 1) return null;
-
-  const matches = stackTrace[LOCATION].match(/(\/[\w-]+)?(\/[\w-]+[.]js:[\d]+):[\d]+/);
-
-  if (matches === null) return null;
-
-  const directory = matches[1] || '';
-  const fileAndLine = matches[2] || '';
-
-  return `${directory}${fileAndLine}`;
 }
 
 // location and expression are optional
