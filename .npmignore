@@ -1,0 +1,6 @@
+src/
+tests/
+node_modules/
+babel.config.js
+tsconfig.json
+.gitignore
