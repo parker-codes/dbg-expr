@@ -14,15 +14,16 @@
   "keywords": [
     "debug",
     "console",
-    "logging"
+    "logging",
+    "expression"
   ],
   "author": "Parker McMullin <parker.mcmullin01@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/google-mac/debug.git"
+    "url": "https://github.com/google-mac/dbg-expr.git"
   },
-  "homepage": "https://github.com/google-mac/debug",
+  "homepage": "https://github.com/google-mac/dbg-expr",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.8.4",

@@ -5,7 +5,6 @@ test('parses basic one-liner function', () => {
   expect(expression).toBe('x + y');
 });
 
-// TODO: fails because semicolon and closing bracket exist
 test('parses basic multi-line function', () => {
   const expression = parse(`
   function () {
@@ -15,7 +14,6 @@ test('parses basic multi-line function', () => {
   expect(expression).toBe('height * width * depth');
 });
 
-// TODO: fails because semicolon and closing bracket exist
 test('parses multi-line function regardless of spacing', () => {
   const expression = parse(`
   function  ()   {

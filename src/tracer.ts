@@ -38,9 +38,3 @@ export function getCallerLocation(stackTrace: string[]): NullableString {
 function fileInfoRegex() {
   return /(\/[\w-]+)?(\/[\w-]+.(js|ts|jsx|tsx|vue|svelte)([\w-?=&]*):[\d]+):[\d]+/;
 }
-
-// TODO: remove when regex is complete
-// original -> /(\/[\w-]+)?(\/[\w-]+[.]js:[\d]+):[\d]+/
-// (\/[\w-]+)?(\/[\w-]+.(js|ts|vue|svelte){1}[?]?[\w&=]*[\d]+):[\d]+
-// (\/[\w-]+)?(\/[\w-]+.(js|vue):[\d]+):[\d]+
-// (\/[\w-]+)?(\/[\w-]+.(js|vue)([\w-?=&]*):[\d]+):[\d]+
