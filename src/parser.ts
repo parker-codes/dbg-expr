@@ -1,7 +1,20 @@
 export default function parse(expression: string): string {
-  let value = expression;
-  value = trimLeft(value, ['function', '(', ')', '=>', '{', 'return']);
-  value = trimRight(value, ['}', ';']);
+  let trimmed = trimSides(expression);
+  let replaced = replaceCommonAnnoyances(trimmed);
+  return replaced;
+}
+
+function trimSides(value: string): string {
+  const LEFT_SIDE_VALUES = ['function', '(', ')', '=>', '{', 'return'];
+  const RIGHT_SIDE_VALUES = ['}', ';'];
+
+  value = trimLeft(value, LEFT_SIDE_VALUES);
+  value = trimRight(value, RIGHT_SIDE_VALUES);
+  return value;
+}
+
+function replaceCommonAnnoyances(value: string): string {
+  value = value.replace('_this', 'this'); // Vue/Nuxt
   return value;
 }
 
@@ -16,31 +29,3 @@ function trimRight(str: string, list: string[]) {
     return str.replace(new RegExp('[' + item + '\\s]+$'), '').trimRight();
   }, str.trim());
 }
-
-// TODO: use these as tests!
-
-// const x = 10;
-// const y = 2;
-// const height = 28;
-// const width = 5;
-// const depth = 100;
-// const something = 42;
-
-// const functions = [
-//   function () { return x + y; },
-//   function   ()   {
-//        return height * width * depth;
-//   },
-//   function() {
-//   return 4 + 3;
-//   },
-//   () => 4 + 1,
-//   () => variable * 2 + 1,
-//   () => {
-//     something + 1;
-//   }
-// ];
-
-// const parsedFunctions = functions.map(parse);
-
-// console.log(parsedFunctions);

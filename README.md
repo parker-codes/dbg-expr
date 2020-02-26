@@ -13,6 +13,8 @@ Instead of separating "working" logic in order to log out individual pieces, use
 - value of expression result
 - returns value so it can be used in place!
 
+---
+
 ## Installation
 
 ```bash
@@ -22,6 +24,8 @@ $ yarn add debug
 # npm
 $ npm install --save debug
 ```
+
+---
 
 ## Usage
 
@@ -50,12 +54,25 @@ const age = 30;
 console.log('age', age);
 ```
 
+---
+
 ## Log Format
 
 `[location] expression = value`
 
+---
+
 ## Notice
 
-You'll notice that the expression is wrapped in a function. This is the only way to keep the expression unevaluated and logged out for you! If you pass only the expression, you'll still get the location and value, but not the expression.
+You'll notice that the expression is wrapped in a function. This is the only way to keep the expression unevaluated and logged out for you! If you pass only the expression, you'll still see the location and value, but not the stringified expression.
 
-Please also note that the examples are currently only displaying ES6 arrow functions. You may also use regular anonymous functions with the `function` keyword.
+Please also note that the examples above are using ES6 arrow functions. You may also use regular anonymous functions with the `function` keyword, like so:
+
+```js
+var variable = 98;
+
+// [/src/index.js:8] variable + 1 = 99
+debug(function() {
+  return variable + 1;
+});
+```

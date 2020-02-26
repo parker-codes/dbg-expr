@@ -14,18 +14,33 @@ export function getStackTrace(): string[] {
 }
 
 export function getCallerLocation(stackTrace: string[]): NullableString {
-  //   console.log(stackTrace);
+  // console.log(stackTrace);
 
-  const LOCATION = 1;
+  const LOCATION = 2;
 
   if (stackTrace.length < LOCATION + 1) return null;
 
-  const matches = stackTrace[LOCATION].match(/(\/[\w-]+)?(\/[\w-]+[.]js:[\d]+):[\d]+/);
-
+  let matches = stackTrace[LOCATION].match(fileInfoRegex());
+  // console.log('matches', matches);
   if (matches === null) return null;
 
   const directory = matches[1] || '';
-  const fileAndLine = matches[2] || '';
+  let fileAndLine = matches[2] || '';
+  // strip out file query string
+  if (fileAndLine !== '' && matches.length >= 5) fileAndLine = fileAndLine.replace(matches[4], '');
 
   return `${directory}${fileAndLine}`;
 }
+
+// examples of what needs to be matched
+// (at ./node_modules/vue-loader/lib/index.js?!./pages/index.vue?vue&type=script&lang=js&:40:8)
+// ./node_modules/vue-loader/lib/index.js?!./pages/index.vue?vue&type=script&lang=js&:40:8
+function fileInfoRegex() {
+  return /(\/[\w-]+)?(\/[\w-]+.(js|ts|jsx|tsx|vue|svelte)([\w-?=&]*):[\d]+):[\d]+/;
+}
+
+// TODO: remove when regex is complete
+// original -> /(\/[\w-]+)?(\/[\w-]+[.]js:[\d]+):[\d]+/
+// (\/[\w-]+)?(\/[\w-]+.(js|ts|vue|svelte){1}[?]?[\w&=]*[\d]+):[\d]+
+// (\/[\w-]+)?(\/[\w-]+.(js|vue):[\d]+):[\d]+
+// (\/[\w-]+)?(\/[\w-]+.(js|vue)([\w-?=&]*):[\d]+):[\d]+
