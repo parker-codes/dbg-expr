@@ -4,3 +4,4 @@ node_modules/
 babel.config.js
 tsconfig.json
 .gitignore
+LICENSE.md
