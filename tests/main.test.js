@@ -1,4 +1,5 @@
-import dbg, { evaluateDbg } from '../src/index';
+import dbg from '../src/index';
+import evaluateDbg from '../src/evaluator';
 
 test('logs out to the console', () => {
   console.log = jest.fn();

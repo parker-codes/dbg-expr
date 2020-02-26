@@ -14,14 +14,11 @@ export function getStackTrace(): string[] {
 }
 
 export function getCallerLocation(stackTrace: string[]): NullableString {
-  // console.log(stackTrace);
-
   const LOCATION = 2;
 
   if (stackTrace.length < LOCATION + 1) return null;
 
   let matches = stackTrace[LOCATION].match(fileInfoRegex());
-  // console.log('matches', matches);
   if (matches === null) return null;
 
   const directory = matches[1] || '';
