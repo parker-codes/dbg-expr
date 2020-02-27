@@ -2,7 +2,7 @@ import { LogParts } from './types';
 
 // location and expression are optional
 // [location] expression = value  -> [src/main.rs:2] a * 2 = 4
-export default function formatAndLog({ location, expression, value }: LogParts): void {
+export default function log<T>({ location, expression, value }: LogParts<T>): void {
   const parts: string[] = [];
 
   if (!!location) parts.push(`[${location}]`);
