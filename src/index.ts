@@ -1,4 +1,4 @@
-import { Expression, CallbackOrExpression, ResultOfCallbackOrExpression } from './types';
+import { CallbackOrExpression, ResultOfCallbackOrExpression } from './types';
 import evaluate from './evaluator';
 import log from './logger';
 
@@ -7,12 +7,6 @@ export default function dbg<T>(input: CallbackOrExpression<T>): ResultOfCallback
   log(logParts);
   return logParts.value;
 }
-
-// export default function dbg<T>(expression: Expression<T>): ReturnType<Expression<T>> {
-//   const logParts = evaluate(expression);
-//   log(logParts);
-//   return logParts.value;
-// }
 
 function test() {
   const value = dbg(() => 4);
