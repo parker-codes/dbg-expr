@@ -29,21 +29,21 @@ test('can have functions in the expression', () => {
   expect(value).toBe('Hello World');
 });
 
-// TODO: fix: if multiline, don't remove trailing semicolon
-// test('expressions can span multiple lines', () => {
-//   const { expression, value } = evaluate(() => {
-//     const firstName = 'Jane';
-//     const lastName = 'Doe';
-//     return `Her name is ${firstName} ${lastName}.`;
-//   });
+// if multiline, don't remove trailing semicolon
+test('expressions can span multiple lines', () => {
+  const { expression, value } = evaluate(() => {
+    const firstName = 'Jane';
+    const lastName = 'Doe';
+    return `Her name is ${firstName} ${lastName}.`;
+  });
 
-//   expect(expression).toBe(
-//     `const firstName = 'Jane';
-//     const lastName = 'Doe';
-//     return \`Her name is \${firstName} \${lastName}.\`;`
-//   );
-//   expect(value).toBe('Her name is Jane Doe.');
-// });
+  expect(expression).toBe(
+    `const firstName = 'Jane';
+    const lastName = 'Doe';
+    return \`Her name is \${firstName} \${lastName}.\`;`
+  );
+  expect(value).toBe('Her name is Jane Doe.');
+});
 
 // TODO: this one fails because it doesn't parse out the function name (it's not anonymous anymore)
 // NOTE: is this even desired behaviour? it would allow for logging large function expressions defined elsewhere

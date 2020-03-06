@@ -43,9 +43,18 @@ test('parses multi-line arrow function with variable', () => {
   expect(expression).toBe('something + 1');
 });
 
-// TODO: add tests for multi-line output, like
-// () => {
-//   const first = 1;
-//   const second = 2;
-//   return first + second;
-// }
+// TODO: fix - fails because multlined expressions should have equal indentation
+// test('expressions can span multiple lines', () => {
+//   const expression = parse(`
+//     () => {
+//       const first = 1;
+//       const second = 2;
+//       return first + second;
+//     }`);
+
+//   expect(expression).toBe(
+//     `const first = 1;
+//     const second = 2;
+//     return first + second;`
+//   );
+// });

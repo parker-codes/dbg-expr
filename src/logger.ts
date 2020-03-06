@@ -1,5 +1,4 @@
 import { LogParts } from './types';
-const cardinal = require('cardinal');
 
 const COLOR_WHITE = 'color: white;';
 const BG_COLOR_GREEN = 'background-color: #95B46A;';
@@ -25,7 +24,7 @@ function logInNodeTerminal<T>({ location, expression, value }: LogParts<T>): voi
 
   if (!!location) parts.push(`[${location}]`);
   if (!!expression) {
-    // TODO: cardinal only works in node
+    // TODO: cardinal only works in node - figure out how it can log here
     // const highlighted = cardinal.highlight(expression + ';');
     // console.debug(highlighted);
     parts.push(expression);

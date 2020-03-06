@@ -25,14 +25,14 @@ function replaceCommonAnnoyances(expression: string): string {
   return expression;
 }
 
-function trimLeft(str: string, list: string[]) {
+function trimLeft(string: string, list: string[]): string {
   return list.reduce((str, item) => {
     return str.replace(new RegExp('^[' + item + '\\s]+'), '').trimLeft();
-  }, str.trim());
+  }, string.trim());
 }
 
-function trimRight(str: string, list: string[]) {
+function trimRight(string: string, list: string[]): string {
   return list.reduce((str, item) => {
     return str.replace(new RegExp('[' + item + '\\s]+$'), '').trimRight();
-  }, str.trim());
+  }, string.trim());
 }
