@@ -2,8 +2,9 @@ import dbg from '../src/index';
 
 test('logs out to the console', () => {
   console.log = jest.fn();
+  console.debug = jest.fn();
   dbg(() => 88 * 2);
-  expect(console.log).toHaveBeenCalled();
+  expect(console.log || console.debug).toHaveBeenCalled();
 });
 
 test('evaluates inline arithmetic', () => {
