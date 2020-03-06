@@ -4,18 +4,25 @@ export default function parse(expression: string): string {
   return replaced;
 }
 
-function trimSides(value: string): string {
-  const LEFT_SIDE_VALUES = ['function', '(', ')', '=>', '{', 'return'];
-  const RIGHT_SIDE_VALUES = ['}', ';'];
+function trimSides(expression: string): string {
+  const LEFT_SIDE_VALUES = ['function', '(', ')', '=>', '{', 'return']; // trims left to right
+  const RIGHT_SIDE_VALUES = ['}']; // trims right to left
 
-  value = trimLeft(value, LEFT_SIDE_VALUES);
-  value = trimRight(value, RIGHT_SIDE_VALUES);
-  return value;
+  expression = trimLeft(expression, LEFT_SIDE_VALUES);
+  expression = trimRight(expression, RIGHT_SIDE_VALUES);
+
+  // only trim semicolon if it's the only line
+  const numberOfLines = expression.split(/\r\n|\r|\n/).length;
+  if (numberOfLines === 1) {
+    expression = trimRight(expression, [';']);
+  }
+
+  return expression;
 }
 
-function replaceCommonAnnoyances(value: string): string {
-  value = value.replace('_this', 'this'); // Vue/Nuxt
-  return value;
+function replaceCommonAnnoyances(expression: string): string {
+  expression = expression.replace('_this', 'this'); // Vue/Nuxt
+  return expression;
 }
 
 function trimLeft(str: string, list: string[]) {

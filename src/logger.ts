@@ -1,4 +1,5 @@
 import { LogParts } from './types';
+const cardinal = require('cardinal');
 
 const COLOR_WHITE = 'color: white;';
 const BG_COLOR_GREEN = 'background-color: #95B46A;';
@@ -24,6 +25,9 @@ function logInNodeTerminal<T>({ location, expression, value }: LogParts<T>): voi
 
   if (!!location) parts.push(`[${location}]`);
   if (!!expression) {
+    // TODO: cardinal only works in node
+    // const highlighted = cardinal.highlight(expression + ';');
+    // console.debug(highlighted);
     parts.push(expression);
     parts.push('=');
   }
@@ -44,10 +48,21 @@ function logInBrowserConsole<T>({ location, expression, value }: LogParts<T>): v
   }
 
   if (!!expression) {
-    console.debug('%c Expression ', [COLOR_WHITE, BG_COLOR_BLUE].join(''), ' ', expression);
+    const numberOfLines = expression.split(/\r\n|\r|\n/).length;
+
+    if (numberOfLines > 1) {
+      // tag and then expression underneath
+      console.debug('%c Expression ', [COLOR_WHITE, BG_COLOR_BLUE].join(''), '\n', expression);
+      // console.debug('%c Expression ', [COLOR_WHITE, BG_COLOR_BLUE].join(''));
+      // console.debug(expression);
+    } else {
+      // inline
+      console.debug('%c Expression ', [COLOR_WHITE, BG_COLOR_BLUE].join(''), ' ', expression);
+    }
   }
 
   console.debug('%c Value ', [COLOR_WHITE, BG_COLOR_RED].join(''), '      ', value);
+  // console.debug('%c Value ', [COLOR_WHITE, BG_COLOR_RED].join(''), ' ', value);
 
   console.groupEnd();
 }
