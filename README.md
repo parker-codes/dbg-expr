@@ -107,7 +107,7 @@ const uppercaseFirstNames = people.map(person => {
 });
 
 // concise code by just wrapping in dbg()
-const uppercaseFirstNames = people.map(person => dbg(person.first).toUpperCase());
+const uppercaseFirstNames = people.map(person => dbg(() => person.first).toUpperCase());
 ```
 
 ### Why do I need to pass in a function?

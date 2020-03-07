@@ -1,6 +1,6 @@
 {
   "name": "dbg-expr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A helper for evalutating and logging an expression at the same time.",
   "source": "src/index.ts",
   "main": "dist/index.js",
