@@ -23,10 +23,10 @@ Instead of separating "working" logic in order to log out individual pieces, use
 
 ```bash
 # yarn
-$ yarn add -D debug
+$ yarn add -D dbg-expr
 
 # npm
-$ npm install --save-dev debug
+$ npm install --save-dev dbg-expr
 ```
 
 _Please note that the **\$** character above is to denote use in a terminal. The command will fail if you enter that character when installing._
