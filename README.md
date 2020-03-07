@@ -2,6 +2,10 @@
 
 A helper for evalutating and logging an expression at the same time. Idea taken from [Rust dbg! macro](https://doc.rust-lang.org/std/macro.dbg.html).
 
+![npm](https://img.shields.io/npm/dw/dbg-expr)
+![npm type definitions](https://img.shields.io/npm/types/typescript)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/dbg-expr)
+
 Instead of separating "working" logic in order to log out individual pieces, use this function to log the expression and value in place!
 
 ---
